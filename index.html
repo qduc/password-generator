@@ -50,27 +50,56 @@
     </div>
 
     <script>
-        // Basic JavaScript to demonstrate button click and access options
+        function generatePassword(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols) {
+            const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+            const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const numbers = '0123456789';
+            const symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
+
+            let characters = '';
+            if (includeLowercase) characters += lowercase;
+            if (includeUppercase) characters += uppercase;
+            if (includeNumbers) characters += numbers;
+            if (includeSymbols) characters += symbols;
+
+            if (characters.length === 0) {
+                return 'Please select at least one character type.';
+            }
+
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                password += characters[randomIndex];
+            }
+
+            return password;
+        }
+
         document.getElementById('generateBtn').addEventListener('click', function() {
-            const length = document.getElementById('length').value;
+            const length = parseInt(document.getElementById('length').value, 10);
             const includeLowercase = document.getElementById('includeLowercase').checked;
             const includeUppercase = document.getElementById('includeUppercase').checked;
             const includeNumbers = document.getElementById('includeNumbers').checked;
             const includeSymbols = document.getElementById('includeSymbols').checked;
+            const passwordsTextarea = document.getElementById('passwords');
 
-            // Placeholder for password generation logic
-            console.log('Generate button clicked with options:', {
-                length,
-                includeLowercase,
-                includeUppercase,
-                includeNumbers,
-                includeSymbols
-            });
+            // Basic validation: ensure at least one type is selected
+            if (!includeLowercase && !includeUppercase && !includeNumbers && !includeSymbols) {
+                 passwordsTextarea.value = 'Error: Select at least one character type.';
+                 return;
+            }
 
-            // In a real app, you would generate passwords based on options
-            // and update the textarea:
-            // document.getElementById('passwords').value = 'Password1\nPassword2\nPassword3';
-            alert('Generate button clicked! (Password generation logic goes here)');
+            const newPassword = generatePassword(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols);
+
+            // Append the new password to the textarea, adding a newline if it's not empty
+            if (passwordsTextarea.value) {
+                passwordsTextarea.value += '\n' + newPassword;
+            } else {
+                passwordsTextarea.value = newPassword;
+            }
+
+            // Scroll to the bottom of the textarea to show the latest password
+            passwordsTextarea.scrollTop = passwordsTextarea.scrollHeight;
         });
     </script>
 </body>
