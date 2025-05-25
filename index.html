@@ -14,6 +14,8 @@
         <div class="mb-4">
             <label for="passwords" class="block text-gray-700 text-sm font-bold mb-2">Generated Passwords:</label>
             <textarea id="passwords" readonly rows="6" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed resize-none font-mono"></textarea>
+            <button id="copyAllBtn" class="mt-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded text-sm focus:outline-none focus:shadow-outline">Copy All</button>
+            <div id="errorMessage" class="mt-2 text-red-500 text-sm font-semibold"></div> <!-- Error message div -->
         </div>
 
         <div class="mt-6 mb-6">
@@ -23,6 +25,13 @@
                 <label for="length" class="block text-gray-700 text-sm font-bold mb-2">Password Length:</label>
                 <input type="number" id="length" value="12" min="4" max="128" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
+
+            <div class="mb-4">
+                <label for="numPasswords" class="block text-gray-700 text-sm font-bold mb-2">Number of Passwords:</label>
+                <input type="number" id="numPasswords" value="5" min="1" max="20" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
 
             <div class="grid grid-cols-2 gap-4">
                 <div>
@@ -49,59 +58,6 @@
         </button>
     </div>
 
-    <script>
-        function generatePassword(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols) {
-            const lowercase = 'abcdefghijklmnopqrstuvwxyz';
-            const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            const numbers = '0123456789';
-            const symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
-
-            let characters = '';
-            if (includeLowercase) characters += lowercase;
-            if (includeUppercase) characters += uppercase;
-            if (includeNumbers) characters += numbers;
-            if (includeSymbols) characters += symbols;
-
-            if (characters.length === 0) {
-                return 'Please select at least one character type.';
-            }
-
-            let password = '';
-            for (let i = 0; i < length; i++) {
-                const randomIndex = Math.floor(Math.random() * characters.length);
-                password += characters[randomIndex];
-            }
-
-            return password;
-        }
-
-        document.getElementById('generateBtn').addEventListener('click', function() {
-            const length = parseInt(document.getElementById('length').value, 10);
-            const includeLowercase = document.getElementById('includeLowercase').checked;
-            const includeUppercase = document.getElementById('includeUppercase').checked;
-            const includeNumbers = document.getElementById('includeNumbers').checked;
-            const includeSymbols = document.getElementById('includeSymbols').checked;
-            const passwordsTextarea = document.getElementById('passwords');
-
-            // Basic validation: ensure at least one type is selected
-            if (!includeLowercase && !includeUppercase && !includeNumbers && !includeSymbols) {
-                 passwordsTextarea.value = 'Error: Select at least one character type.';
-                 return;
-            }
-
-            const generatedPasswords = [];
-            const numberOfPasswords = 5; // Generate 5 passwords
-
-            for (let i = 0; i < numberOfPasswords; i++) {
-                generatedPasswords.push(generatePassword(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols));
-            }
-
-            // Set the textarea value to the generated passwords, separated by newlines
-            passwordsTextarea.value = generatedPasswords.join('\n');
-
-            // Scroll to the bottom of the textarea to show the latest passwords
-            passwordsTextarea.scrollTop = passwordsTextarea.scrollHeight;
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
