@@ -12,29 +12,65 @@
         <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">Password Generator</h1>
 
         <div class="mb-4">
-            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Generated Password:</label>
-            <input type="text" id="password" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed">
+            <label for="passwords" class="block text-gray-700 text-sm font-bold mb-2">Generated Passwords:</label>
+            <textarea id="passwords" readonly rows="6" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed resize-none"></textarea>
+        </div>
+
+        <div class="mt-6 mb-6">
+            <h2 class="text-lg font-semibold mb-3 text-gray-800">Options</h2>
+
+            <div class="mb-4">
+                <label for="length" class="block text-gray-700 text-sm font-bold mb-2">Password Length:</label>
+                <input type="number" id="length" value="12" min="4" max="128" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <input type="checkbox" id="includeLowercase" checked class="mr-2 leading-tight">
+                    <label for="includeLowercase" class="text-sm text-gray-700">Include Lowercase</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="includeUppercase" checked class="mr-2 leading-tight">
+                    <label for="includeUppercase" class="text-sm text-gray-700">Include Uppercase</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="includeNumbers" checked class="mr-2 leading-tight">
+                    <label for="includeNumbers" class="text-sm text-gray-700">Include Numbers</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="includeSymbols" class="mr-2 leading-tight">
+                    <label for="includeSymbols" class="text-sm text-gray-700">Include Symbols</label>
+                </div>
+            </div>
         </div>
 
         <button id="generateBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
             Generate Password
         </button>
-
-        <!-- Basic options could go here later -->
-        <!--
-        <div class="mt-6">
-            <label for="length" class="block text-gray-700 text-sm font-bold mb-2">Password Length:</label>
-            <input type="number" id="length" value="12" min="4" max="32" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-        </div>
-        -->
     </div>
 
     <script>
-        // Basic JavaScript to demonstrate button click (password generation logic not included yet)
+        // Basic JavaScript to demonstrate button click and access options
         document.getElementById('generateBtn').addEventListener('click', function() {
+            const length = document.getElementById('length').value;
+            const includeLowercase = document.getElementById('includeLowercase').checked;
+            const includeUppercase = document.getElementById('includeUppercase').checked;
+            const includeNumbers = document.getElementById('includeNumbers').checked;
+            const includeSymbols = document.getElementById('includeSymbols').checked;
+
+            // Placeholder for password generation logic
+            console.log('Generate button clicked with options:', {
+                length,
+                includeLowercase,
+                includeUppercase,
+                includeNumbers,
+                includeSymbols
+            });
+
+            // In a real app, you would generate passwords based on options
+            // and update the textarea:
+            // document.getElementById('passwords').value = 'Password1\nPassword2\nPassword3';
             alert('Generate button clicked! (Password generation logic goes here)');
-            // In a real app, you would generate a password and update the input field
-            // document.getElementById('password').value = 'YourGeneratedPassword';
         });
     </script>
 </body>
