@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <!-- Link to Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
+        <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">Password Generator</h1>
+
+        <div class="mb-4">
+            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Generated Password:</label>
+            <input type="text" id="password" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed">
+        </div>
+
+        <button id="generateBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+            Generate Password
+        </button>
+
+        <!-- Basic options could go here later -->
+        <!--
+        <div class="mt-6">
+            <label for="length" class="block text-gray-700 text-sm font-bold mb-2">Password Length:</label>
+            <input type="number" id="length" value="12" min="4" max="32" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        -->
+    </div>
+
+    <script>
+        // Basic JavaScript to demonstrate button click (password generation logic not included yet)
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            alert('Generate button clicked! (Password generation logic goes here)');
+            // In a real app, you would generate a password and update the input field
+            // document.getElementById('password').value = 'YourGeneratedPassword';
+        });
+    </script>
+</body>
+</html>
