@@ -89,16 +89,17 @@
                  return;
             }
 
-            const newPassword = generatePassword(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols);
+            const generatedPasswords = [];
+            const numberOfPasswords = 5; // Generate 5 passwords
 
-            // Append the new password to the textarea, adding a newline if it's not empty
-            if (passwordsTextarea.value) {
-                passwordsTextarea.value += '\n' + newPassword;
-            } else {
-                passwordsTextarea.value = newPassword;
+            for (let i = 0; i < numberOfPasswords; i++) {
+                generatedPasswords.push(generatePassword(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols));
             }
 
-            // Scroll to the bottom of the textarea to show the latest password
+            // Set the textarea value to the generated passwords, separated by newlines
+            passwordsTextarea.value = generatedPasswords.join('\n');
+
+            // Scroll to the bottom of the textarea to show the latest passwords
             passwordsTextarea.scrollTop = passwordsTextarea.scrollHeight;
         });
     </script>
